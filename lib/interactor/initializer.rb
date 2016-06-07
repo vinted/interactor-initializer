@@ -1,4 +1,7 @@
 require 'interactor/initializer/version'
+require 'interactor/initializer/attr_readers'
+require 'interactor/initializer/call_methods'
+require 'interactor/initializer/initialize'
 
 module Interactor
   module Initializer
