@@ -4,10 +4,10 @@ describe Interactor::Initializer::AttrReaders do
     let(:dummy_class) { Class.new }
     let(:attributes) { [:test1, :test2] }
 
-    it 'adds attr_reader' do
+    it 'adds private attr_reader' do
       subject
-      expect(dummy_class.new).to respond_to :test1
-      expect(dummy_class.new).to respond_to :test2
+      expect(dummy_class.private_method_defined?(:test1)).to be_truthy
+      expect(dummy_class.private_method_defined?(:test2)).to be_truthy
     end
   end
 end
