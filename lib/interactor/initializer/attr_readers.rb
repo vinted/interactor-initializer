@@ -3,7 +3,7 @@ class Interactor::Initializer::AttrReaders
     target_class.class_eval do
       attributes.each do |attribute|
         attr_reader(attribute)
-        private(attribute)
+        protected(attribute)
       end
     end
   end
