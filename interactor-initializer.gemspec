@@ -8,9 +8,10 @@ Gem::Specification.new do |spec|
   spec.platform = Gem::Platform::RUBY
   spec.version = Interactor::Initializer::VERSION
   spec.authors = ['Šarūnas Kūjalis']
-  spec.email = ['sarjalis@gmail.com']
+  spec.email = ['admin@vinted.com']
   spec.summary = 'Dry interactor initializer'
   spec.homepage = 'https://github.com/vinted/interactor-initializer'
+  spec.license = 'MIT'
 
   spec.files = `git ls-files`.split($/)
   spec.test_files = `git ls-files -- {spec}/*`.split("\n")
