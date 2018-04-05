@@ -13,14 +13,14 @@ module Interactor
     module ClassMethods
       module_function
 
-      def initialize_with(*attributes)
-        Interactor::Initializer::Initialize.for(self, attributes)
-        Interactor::Initializer::AttrReaders.for(self, attributes)
+      def initialize_with(*attributes, **defaults)
+        Interactor::Initializer::Initialize.for(self, attributes, defaults)
+        Interactor::Initializer::AttrReaders.for(self, attributes, defaults)
       end
 
-      def initialize_with_keyword_params(*attributes)
-        Interactor::Initializer::Initialize.for(self, attributes, keyword_params: true)
-        Interactor::Initializer::AttrReaders.for(self, attributes)
+      def initialize_with_keyword_params(*attributes, **defaults)
+        Interactor::Initializer::Initialize.for(self, attributes, defaults, keyword_params: true)
+        Interactor::Initializer::AttrReaders.for(self, attributes, defaults)
       end
     end
   end
