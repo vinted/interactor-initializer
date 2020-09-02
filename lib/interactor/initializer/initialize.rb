@@ -1,6 +1,6 @@
 class Interactor::Initializer::Initialize
-  def self.for(*args)
-    new(*args).run
+  def self.for(*args, **kwargs)
+    new(*args, **kwargs).run
   end
 
   attr_reader :target_class, :attributes, :keyword_params
