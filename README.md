@@ -2,7 +2,6 @@
 
 [![Build Status](https://secure.travis-ci.org/vinted/interactor-initializer.png)](http://travis-ci.org/vinted/interactor-initializer)
 [![Gem Version](https://badge.fury.io/rb/interactor-initializer.png)](http://badge.fury.io/rb/interactor-initializer)
-[![Dependency Status](https://gemnasium.com/vinted/interactor-initializer.png)](https://gemnasium.com/vinted/interactor-initializer)
 
 Dry interactor initializer
 
