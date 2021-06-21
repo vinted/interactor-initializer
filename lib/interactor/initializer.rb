@@ -1,16 +1,26 @@
 require 'interactor/initializer/version'
 require 'interactor/initializer/attr_readers'
-require 'interactor/initializer/call_methods'
 require 'interactor/initializer/initialize'
 
 module Interactor
   module Initializer
     def self.included(target_class)
       target_class.extend ClassMethods
-      Interactor::Initializer::CallMethods.for(target_class)
     end
 
     module ClassMethods
+      def for(*args)
+        new(*args).run
+      end
+
+      def with(*args)
+        new(*args).run
+      end
+
+      def run(*args)
+        new(*args).run
+      end
+
       module_function
 
       def initialize_with(*attributes)
