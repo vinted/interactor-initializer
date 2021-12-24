@@ -8,20 +8,23 @@ module Interactor
       target_class.extend ClassMethods
     end
 
+    # Default implementation to make IDEs happy
+    # Will be overridden by Interactor::Initializer::Initialize
+    def initialize(*unknown_args); end
+
     module ClassMethods
-      def for(*args)
-        new(*args).run
+      # Default implementation
+      def for(*unknown_args)
+        new(*unknown_args).run
       end
 
-      def with(*args)
-        new(*args).run
+      def with(*unknown_args)
+        new(*unknown_args).run
       end
 
-      def run(*args)
-        new(*args).run
+      def run(*unknown_args)
+        new(*unknown_args).run
       end
-
-      module_function
 
       def initialize_with(*attributes)
         Interactor::Initializer::Initialize.for(self, attributes)
