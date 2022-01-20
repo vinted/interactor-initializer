@@ -1,8 +1,11 @@
-describe Interactor::Initializer::AttrReaders do
-  describe '.for' do
-    subject { described_class.for(dummy_class, attributes) }
+# frozen_string_literal: true
+
+describe Interactor::Initializer::Helper do
+  describe '.attr_readers' do
+    subject { described_class.attr_readers(dummy_class, attributes) }
+
     let(:dummy_class) { Class.new }
-    let(:attributes) { [:test1, :test2] }
+    let(:attributes) { %i[test1 test2] }
 
     it 'adds protected attr_reader' do
       subject

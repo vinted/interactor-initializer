@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require 'interactor/initializer/version'
-require 'interactor/initializer/attr_readers'
-require 'interactor/initializer/initialize'
+require 'interactor/initializer/helper'
 
 module Interactor
   module Initializer
@@ -9,28 +10,20 @@ module Interactor
     end
 
     module ClassMethods
-      def for(*args)
-        new(*args).run
-      end
-
-      def with(*args)
-        new(*args).run
-      end
-
-      def run(*args)
-        new(*args).run
-      end
-
       module_function
 
       def initialize_with(*attributes)
-        Interactor::Initializer::Initialize.for(self, attributes)
-        Interactor::Initializer::AttrReaders.for(self, attributes)
+        signature = attributes.join(', ')
+        class_methods = Interactor::Initializer::Helper.methods_with_params
+
+        Interactor::Initializer::Helper.modify_class(self, signature, attributes, class_methods)
       end
 
       def initialize_with_keyword_params(*attributes)
-        Interactor::Initializer::Initialize.for(self, attributes, keyword_params: true)
-        Interactor::Initializer::AttrReaders.for(self, attributes)
+        signature = attributes.map { |attr| "#{attr}:" }.join(', ')
+        class_methods = Interactor::Initializer::Helper.methods_with_keywords
+
+        Interactor::Initializer::Helper.modify_class(self, signature, attributes, class_methods)
       end
     end
   end
