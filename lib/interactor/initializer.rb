@@ -7,6 +7,9 @@ module Interactor
   module Initializer
     def self.included(target_class)
       target_class.extend ClassMethods
+
+      class_methods = Interactor::Initializer::Helper.methods_with_params
+      Interactor::Initializer::Helper.modify_class(target_class, '', [], class_methods)
     end
 
     module ClassMethods

@@ -106,4 +106,52 @@ describe Interactor::Initializer do
       end
     end
   end
+
+  context 'with bare inclusion' do
+    let(:interactor) do
+      Class.new do
+        include Interactor::Initializer
+
+        def run
+          :result
+        end
+      end
+    end
+
+    describe '.run' do
+      subject { interactor.run }
+
+      it { is_expected.to eq(:result) }
+    end
+
+    describe '.for' do
+      subject { interactor.for }
+
+      it { is_expected.to eq(:result) }
+    end
+
+    describe '.with' do
+      subject { interactor.with }
+
+      it { is_expected.to eq(:result) }
+    end
+
+    context 'when class is not including interactor initializer' do
+      let(:interactor) do
+        Class.new do
+          def run
+            :result
+          end
+        end
+      end
+
+      describe '.run' do
+        subject { interactor.run }
+
+        it 'cannot call interactor' do
+          expect { subject }.to raise_error(/undefined method/)
+        end
+      end
+    end
+  end
 end
