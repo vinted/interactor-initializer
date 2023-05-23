@@ -24,34 +24,39 @@ class Interactor::Initializer::Helper
     end
   end
 
-  def self.methods_with_params
+  def self.methods_with_params(params = [])
+    params_signature = params.join(',')
+
     <<-RUBY
-      def self.for(*args)
-        new(*args).run
+      def self.for(#{params_signature})
+        new(#{params_signature}).run
       end
 
-      def self.run(*args)
-        new(*args).run
+      def self.run(#{params_signature})
+        new(#{params_signature}).run
       end
 
-      def self.with(*args)
-        new(*args).run
+      def self.with(#{params_signature})
+        new(#{params_signature}).run
       end
     RUBY
   end
 
-  def self.methods_with_keywords
+  def self.methods_with_keywords(attributes)
+    method_params = attributes.map { |attr| "#{attr}:" }.join(', ')
+    initializer_params = attributes.map { |attr| "#{attr}: #{attr}" }.join(', ')
+
     <<-RUBY
-      def self.for(args)
-        new(**args).run
+      def self.for(#{method_params})
+        new(#{initializer_params}).run
       end
 
-      def self.run(args)
-        new(**args).run
+      def self.run(#{method_params})
+        new(#{initializer_params}).run
       end
 
-      def self.with(args)
-        new(**args).run
+      def self.with(#{method_params})
+        new(#{initializer_params}).run
       end
     RUBY
   end

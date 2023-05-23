@@ -68,19 +68,19 @@ describe Interactor::Initializer do
     end
 
     describe '.for' do
-      subject { interactor.for(params) }
+      subject { interactor.for(**params) }
 
       it { is_expected.to eq(:result) }
     end
 
     describe '.with' do
-      subject { interactor.with(params) }
+      subject { interactor.with(**params) }
 
       it { is_expected.to eq(:result) }
     end
 
     describe '.run' do
-      subject { interactor.run(params) }
+      subject { interactor.run(**params) }
 
       it { is_expected.to eq(:result) }
     end
@@ -95,7 +95,7 @@ describe Interactor::Initializer do
     end
 
     context 'when incorrect keywords' do
-      subject { interactor.for(params) }
+      subject { interactor.for(**params) }
 
       let(:params) do
         { arg1: 'value2', arg4: 'value2' }
