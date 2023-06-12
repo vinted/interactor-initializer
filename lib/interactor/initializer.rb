@@ -24,7 +24,7 @@ module Interactor
 
       def initialize_with_keyword_params(*attributes)
         signature = attributes.map { |attr| "#{attr}:" }.join(', ')
-        class_methods = Interactor::Initializer::Helper.methods_with_keywords
+        class_methods = Interactor::Initializer::Helper.methods_with_keywords(attributes)
 
         Interactor::Initializer::Helper.modify_class(self, signature, attributes, class_methods)
       end
