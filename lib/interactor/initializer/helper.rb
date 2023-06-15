@@ -24,18 +24,20 @@ class Interactor::Initializer::Helper
     end
   end
 
-  def self.methods_with_params
+  def self.methods_with_params(attributes = [])
+    signature = attributes.join(', ')
+
     <<-RUBY
-      def self.for(*args)
-        new(*args).run
+      def self.for(#{signature})
+        new(#{signature}).run
       end
 
-      def self.run(*args)
-        new(*args).run
+      def self.run(#{signature})
+        new(#{signature}).run
       end
 
-      def self.with(*args)
-        new(*args).run
+      def self.with(#{signature})
+        new(#{signature}).run
       end
     RUBY
   end

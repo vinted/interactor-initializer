@@ -17,7 +17,7 @@ module Interactor
 
       def initialize_with(*attributes)
         signature = attributes.join(', ')
-        class_methods = Interactor::Initializer::Helper.methods_with_params
+        class_methods = Interactor::Initializer::Helper.methods_with_params(attributes)
 
         Interactor::Initializer::Helper.modify_class(self, signature, attributes, class_methods)
       end
